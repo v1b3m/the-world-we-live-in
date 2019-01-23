@@ -11,11 +11,14 @@ class Developer(Person):
 
     def __init__(self, age, sex, name, language):
         super().__init__(age, sex, name)
-        self.language = language
-    
+        self.language = language 
+        self.__vice = "write code before tests"
 
     def get_language(self):
         return self.language
+
+    def common_vice(self):
+        print("We all love to "+self.__vice)
 
     def __str__(self):
         return "%s is a %s developer" % (self.name, self.language)
@@ -44,13 +47,28 @@ class Child(Person):
         return "Child of " + self.parent
 
 if __name__=='__main__':
+
+    # inheritance
+    # both the developer and child inherit from the person class
     enoch = Developer(18, "male", "Enoch", "ruby on rails" )
+    amon = Child(4, "male", "Amon", "Betty", "Child's Paradise")
+
+    # invoking class attributes
     print(enoch.get_language())
     print(enoch)
-    enoch.speak()
-
-    amon = Child(4, "male", "Amon", "Betty", "Child's Paradise")
     print(amon.get_school())
     print(amon.child_of())
+
+    # polymorphism
+    # both the child and developer have speak functions but they all act differently when invoked
+    enoch.speak()
     amon.speak()
+
+    # private variable can be accessed through the class only
+    enoch.common_vice()
+    # enoch.__vice is not accessible from an object
+
+    
+    
+    
     
